@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="GraphControl" constructor="GraphControl" version="0.0.1" display-name-key="GraphControl" description-key="GraphControl description" control-type="standard">
+    <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
+    <data-set name="graphDataSet" display-name-key="graph_DataSet">
+      <property-set name="xValueData" display-name-key="x_Display_Key" description-key="" of-type="SingleLine.Text" usage="bound" required="true" />
+      <property-set name="yValueData" display-name-key="y_Display_Key" description-key="" of-type="SingleLine.Text" usage="bound" required="true" />
+    </data-set>
+    <resources>
+      <code path="index.ts" order="1"/>
+      <!-- UNCOMMENT TO ADD MORE RESOURCES
+      <css path="css/GraphControl.css" order="1" />
+      <resx path="strings/GraphControl.1033.resx" version="1.0.0" />
+      -->
+    </resources>
+    <!-- UNCOMMENT TO ENABLE THE SPECIFIED API
+    <feature-usage>
+      <uses-feature name="Device.captureAudio" required="true" />
+      <uses-feature name="Device.captureImage" required="true" />
+      <uses-feature name="Device.captureVideo" required="true" />
+      <uses-feature name="Device.getBarcodeValue" required="true" />
+      <uses-feature name="Device.getCurrentPosition" required="true" />
+      <uses-feature name="Device.pickFile" required="true" />
+      <uses-feature name="Utility" required="true" />
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+    -->
+  </control>
+</manifest>
