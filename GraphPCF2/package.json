@@ -10,9 +10,14 @@
   },
   "dependencies": {
     "@types/node": "^10.12.18",
-    "@types/powerapps-component-framework": "^1.2.0"
+    "@types/powerapps-component-framework": "^1.2.0",
+    "@types/react": "^17.0.1",
+    "chart.js": "^2.9.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.9.30",
     "pcf-scripts": "^1",
     "pcf-start": "^1"
   }

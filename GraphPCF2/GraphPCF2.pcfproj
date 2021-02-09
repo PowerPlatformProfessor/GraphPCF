@@ -8,8 +8,8 @@
   <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Pcf.props" Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Pcf.props')"/>
   
   <PropertyGroup>
-    <Name>GraphControl</Name>
-    <ProjectGuid>3ba2ab35-d59c-4576-80ef-bfe141f889a5</ProjectGuid>
+    <Name>GraphPCF2</Name>
+    <ProjectGuid>03e1340e-3fc5-485e-a73e-181abf2f9316</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
   </PropertyGroup>
 

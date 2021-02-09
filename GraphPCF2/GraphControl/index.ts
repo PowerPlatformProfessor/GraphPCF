@@ -9,10 +9,12 @@ export class GraphControl implements ComponentFramework.StandardControl<IInputs,
 
 	private _container : HTMLDivElement;
 
-
+	/**
+	 * Empty constructor.
+	 */
 	constructor()
 	{
-		
+
 	}
 
 	/**
@@ -40,17 +42,46 @@ export class GraphControl implements ComponentFramework.StandardControl<IInputs,
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
+		// if (!context.parameters.graphDataSet.loading) {
+
+		// 	if (context.parameters.graphDataSet.paging != null && context.parameters.graphDataSet.paging.hasNextPage == true) {
+			
+		// 		//set page size
+		// 		context.parameters.graphDataSet.paging.setPageSize(5000);
+				
+		// 		//load next paging
+		// 		context.parameters.graphDataSet.paging.loadNextPage();
+			
+		// 	} else {
+				
+		// 	}
+		// }
 		this.renderApp(context);
 	}
 
 	private renderApp(context: ComponentFramework.Context<IInputs>){
-		const props : IGraphProps = {
+		let columnsOnView = this.getSortedColumnsOnView(context);
+		if (!columnsOnView || columnsOnView.length === 0) {
+			return;
+		}
+
+		const graphProps : IGraphProps = {
 			dataset : context.parameters.graphDataSet, 
 			utils : context.utils,  
 			containerWidth : context.mode.allocatedWidth,
 			containerHeight: context.mode.allocatedHeight, 
+			columnsOnView: columnsOnView,
 		};
-		ReactDOM.render(React.createElement(Graph, props ), this._container);
+		ReactDOM.render(React.createElement(Graph, graphProps), this._container);
+	}
+	private getSortedColumnsOnView(context: ComponentFramework.Context<IInputs>): DataSetInterfaces.Column[] {
+		if (!context.parameters.graphDataSet.columns) {
+			return [];
+		}
+
+		let columns = context.parameters.graphDataSet.columns;
+
+		return columns;
 	}
 
 	/** 
@@ -68,7 +99,7 @@ export class GraphControl implements ComponentFramework.StandardControl<IInputs,
 	 */
 	public destroy(): void
 	{
-		// Add code to cleanup control if necessary
+		ReactDOM.unmountComponentAtNode(this._container);
 	}
 
 }
