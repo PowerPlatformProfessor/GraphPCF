@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState, useEffect, useRef } from 'react';
-import {Chart} from "chart.js";
+import Scatter from '../Domain/Scatter';
 import DataSetInterfaces = ComponentFramework.PropertyHelper.DataSetApi;
 type DataSet = ComponentFramework.PropertyTypes.DataSet;
 
@@ -19,51 +19,11 @@ export const Graph = (props: IGraphProps) => {
     //component did mount and did update
     useEffect(() => {
 
-        var data:any[] = [];
-		props.dataset.sortedRecordIds.forEach((currentRecordId, index)=> {
-            console.log("row " + index);
-            
-            var dataObj = {x:"", y:""};
-            props.columnsOnView?.forEach(function (columnItem, index) {
-                
-                if(index == 0){
-                    dataObj.x = props.dataset.records[currentRecordId].getFormattedValue(columnItem.name);
-                }
-
-                if(index == 1){
-                    dataObj.y = props.dataset.records[currentRecordId].getFormattedValue(columnItem.name);
-                }
-
-            });
-            data.push(dataObj);
-        });
-
         var ctx = (myChartRef as any).current.getContext('2d');
-        var scatterChartData = {
-            datasets: [{
-                label: 'My First dataset',
-                borderColor:'rgba(0, 204, 255, 0.1)',
-				backgroundColor: 'rgba(0, 204, 255, 0.1)',
-                data: data
-            }, {
-                label: 'My Second dataset',
-                borderColor:'rgba(255, 0, 0, 0.1)',
-				backgroundColor: 'rgba(255, 0, 0, 0.1)',
-                data: [{x: 1, y:1}, {x: 2, y:2}, {x: 3, y:3}]
-            }]
-        };
-        new Chart(ctx, {
-            type: 'scatter',
-            data: scatterChartData,
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Chart.js Scatter Chart'
-                    }
-                }
-            }
-        });
+
+        //beroende på enum graphtype skapa upp olika objekt och rendera
+        let scatterPlot = new Scatter("scatter", props.dataset, props.columnsOnView)
+        scatterPlot.draw(ctx);
 
     });
 

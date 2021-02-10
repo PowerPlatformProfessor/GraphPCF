@@ -2,6 +2,10 @@
 <manifest>
   <control namespace="GraphControl" constructor="GraphControl" version="0.0.1" display-name-key="GraphControl" description-key="GraphControl description" control-type="standard">
     <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
+     <property name="Graph_type" display-name-key="Graph_type" description-key="" of-type="Enum" usage="input" required="true" default-value="0">
+      <value name="Scatter_plot" display-name-key="Scatter_plot" description-key="Display data in scatter plot">0</value>
+      <value name="On" display-name-key="On" description-key="Display active records only.">1</value>
+    </property>
     <data-set name="graphDataSet" display-name-key="graph_DataSet">
       <property-set name="xValueData" display-name-key="x_Display_Key" description-key="" of-type="SingleLine.Text" usage="bound" required="true" />
       <property-set name="yValueData" display-name-key="y_Display_Key" description-key="" of-type="SingleLine.Text" usage="bound" required="true" />
