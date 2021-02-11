@@ -71,6 +71,8 @@ export class GraphControl implements ComponentFramework.StandardControl<IInputs,
 			containerWidth : context.mode.allocatedWidth,
 			containerHeight: context.mode.allocatedHeight, 
 			columnsOnView: columnsOnView,
+			graphType: parseInt(context.parameters.Graph_type.raw!),
+			datasetLabel: context.parameters.datasetLabel.raw!
 		};
 		ReactDOM.render(React.createElement(Graph, graphProps), this._container);
 	}

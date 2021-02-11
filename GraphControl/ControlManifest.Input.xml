@@ -4,8 +4,9 @@
     <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
      <property name="Graph_type" display-name-key="Graph_type" description-key="" of-type="Enum" usage="input" required="true" default-value="0">
       <value name="Scatter_plot" display-name-key="Scatter_plot" description-key="Display data in scatter plot">0</value>
-      <value name="On" display-name-key="On" description-key="Display active records only.">1</value>
+      <value name="Line_plot" display-name-key="Line_plot" description-key="Display data in line plot">1</value>
     </property>
+    <property name="datasetLabel" display-name-key="datasetlabel_Display_Key" description-key="" of-type="SingleLine.Text" usage="input" required="true" />
     <data-set name="graphDataSet" display-name-key="graph_DataSet">
       <property-set name="xValueData" display-name-key="x_Display_Key" description-key="" of-type="SingleLine.Text" usage="bound" required="true" />
       <property-set name="yValueData" display-name-key="y_Display_Key" description-key="" of-type="SingleLine.Text" usage="bound" required="true" />

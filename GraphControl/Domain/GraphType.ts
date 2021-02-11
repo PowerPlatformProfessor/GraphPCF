@@ -7,6 +7,7 @@ export default abstract class GraphType{
     protected _dataset: DataSet;
     protected _columnsOnView?: DataSetInterfaces.Column[];
     protected _data: {
+        labels?:any[],
         datasets: {
             label: string;
             borderColor: string;
@@ -14,11 +15,14 @@ export default abstract class GraphType{
             data: any[];
         }[]
     };
+    protected _datasetLabel?: string; 
 
-    constructor(type: string, dataset: DataSet, columnsOnView?:DataSetInterfaces.Column[]){
+
+    constructor(type: string, dataset: DataSet, columnsOnView?:DataSetInterfaces.Column[], datasetLabel?:string){
         this._type = type;
         this._dataset = dataset;
         this._columnsOnView = columnsOnView;
+        this._datasetLabel = datasetLabel;
     }
 
     public abstract transformDataSetToData(): void;
