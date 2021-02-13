@@ -1,5 +1,5 @@
 import GraphType from "./GraphType";
-import {Chart} from "chart.js";
+import {chartjsbands} from "../Lib/chartjs.bands"
 import DataSetInterfaces = ComponentFramework.PropertyHelper.DataSetApi;
 
 type DataSet = ComponentFramework.PropertyTypes.DataSet;
@@ -15,15 +15,15 @@ export default class Scatter extends GraphType{
 
 		this._dataset.sortedRecordIds.forEach((currentRecordId, index)=> {
             
-            var dataSetObj = {x:0, y:0};
+            var dataSetObj = {x:"", y:""};
             this._columnsOnView?.forEach((columnItem, index) => {
                 
                 if(index == 0){ //have a prop for datatype, kvantitative or kvalitative
-                    dataSetObj.x = parseInt(this._dataset.records[currentRecordId].getFormattedValue(columnItem.name));
+                    dataSetObj.x = this._dataset.records[currentRecordId].getFormattedValue(columnItem.name);
                 }
 
                 if(index == 1){
-                    dataSetObj.y = parseInt(this._dataset.records[currentRecordId].getFormattedValue(columnItem.name));
+                    dataSetObj.y = this._dataset.records[currentRecordId].getFormattedValue(columnItem.name);
                 }
 
             });
@@ -31,10 +31,9 @@ export default class Scatter extends GraphType{
             dataSet.push(dataSetObj);
             
         });
-        //skapa ett set av unika värden på label axeln, lägg in datan i rätt bin. Blir en agregering.
-        var sortedDataSet = dataSet.sort((a,b) => (a.x > b.x) ? 1 : ((b.x > a.x) ? -1 : 0));
-        var data:any[] = sortedDataSet.map(point => point.y);
-        var labels:any[] = sortedDataSet.map(point => point.x);
+
+        var data:any[] = dataSet.map(point => point.y);
+        var labels:any[] = dataSet.map(point => point.x);
 
 
         this._data = {
@@ -42,7 +41,7 @@ export default class Scatter extends GraphType{
             datasets: [
                 {
                     label: this._datasetLabel!,
-                    borderColor:'rgba(0, 204, 255, 0.1)',
+                    borderColor:'red',
                     backgroundColor: 'rgba(0, 204, 255, 0.1)',
                     data: data
                 }
@@ -52,11 +51,26 @@ export default class Scatter extends GraphType{
     }
 
     public draw(context:any): void {
-        new Chart(context, {
+        new chartjsbands.chartjsbands(context, {
                         type: this._type,
 
                         data: this._data,
                         options: {
+                            bands: {
+                                yValue: 10   ,                // The threshold value on the yAxis (default is false)
+                                bandLine: { 	              // The display properties of the threshold line
+                                    stroke: 1, 
+                                    colour: 'black',
+                                    type: 'solid',            // 'solid' or 'dashed'
+                                    label: '18 degrees',                 
+                                    fontSize: '12',
+                                    fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+                                    fontStyle: 'normal'
+                                },
+                                belowThresholdColour: [      // An array of the colors that describes the below threshold colour to use the above threshold color is inherited from the dataset
+                                    'rgba(0, 204, 255, 0.1)'
+                                ]
+                            },
                             plugins: {
                                 title: {
                                     display: true,
@@ -64,7 +78,7 @@ export default class Scatter extends GraphType{
                                 }
                             }
                         }
-        });
+        } as any);
     }
 
 }
