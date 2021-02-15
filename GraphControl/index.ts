@@ -42,20 +42,6 @@ export class GraphControl implements ComponentFramework.StandardControl<IInputs,
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
-		// if (!context.parameters.graphDataSet.loading) {
-
-		// 	if (context.parameters.graphDataSet.paging != null && context.parameters.graphDataSet.paging.hasNextPage == true) {
-			
-		// 		//set page size
-		// 		context.parameters.graphDataSet.paging.setPageSize(5000);
-				
-		// 		//load next paging
-		// 		context.parameters.graphDataSet.paging.loadNextPage();
-			
-		// 	} else {
-				
-		// 	}
-		// }
 		this.renderApp(context);
 	}
 
