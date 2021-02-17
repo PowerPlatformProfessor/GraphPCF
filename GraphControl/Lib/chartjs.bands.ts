@@ -116,6 +116,7 @@ function calculateGradientFill (ctx:any, scale:any, height:any, baseColor:any, g
 
         return grd;
     } catch (e) {
+        console.dir(e);
         console.warn('ConfigError: Chart.Bands.js had a problem applying one or more colors please check that you have selected valid color strings');
         return baseColor;
     }

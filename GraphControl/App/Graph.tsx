@@ -19,7 +19,6 @@ export interface IGraphProps {
 
 export const Graph = (props: IGraphProps) => {
     const myChartRef = useRef(null);
-    const [divtext, setDivText] = useState("test");
 
     //component did mount and did update
     useEffect(() => {
