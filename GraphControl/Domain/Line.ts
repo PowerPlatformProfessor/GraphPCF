@@ -57,7 +57,7 @@ export default class Scatter extends GraphType{
                         data: this._data,
                         options: {
                             bands: {
-                                yValue: 10   ,                // The threshold value on the yAxis (default is false)
+                                yValue: 18   ,                // The threshold value on the yAxis (default is false)
                                 bandLine: { 	              // The display properties of the threshold line
                                     stroke: 1, 
                                     colour: 'black',
